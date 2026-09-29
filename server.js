@@ -16,31 +16,35 @@ const positions=[
  ["Extrema derecha","ED"],["Delantera","DC"],["Extrema izquierda","EI"]
 ];
 const nations=["🇺🇸 Estados Unidos","🇧🇷 Brasil","🇨🇦 Canadá","🇬🇧 Reino Unido","🇦🇺 Australia","🇩🇪 Alemania","🇫🇷 Francia","🇪🇸 España","🇮🇹 Italia","🇨🇿 República Checa","🇷🇺 Rusia","🇯🇵 Japón","🇲🇽 México","🇦🇷 Argentina","🇨🇴 Colombia"];
-const names=["Abella Danger","Adriana Chechik","Angela White","Anna Bell Peaks","Anya Olsen","Ariella Ferrera","Ariana Marie","Asa Akira","Autumn Falls","Ava Addams","Brittany Andrews","Brandi Love","Brooklyn Chase","Carmen Caliente","Carter Cruise","Casey Calvert","Charlotte Sartre","Cherie DeVille","Christy Canyon","Clara Mia","Dani Daniels","Dani Jensen","Dillion Harper","Elsa Jean","Emily Willis","Eva Elfie","Eva Lovia","Gianna Dior","Gina Valentina","Hannah Hays","Harley Dean","Isabella Soprano","Jasmine Grey","Jayden Cole","Jessa Rhodes","Jill Kassidy","Jillian Janson","Kendra Lust","Kira Noir","Kissa Sins","Kylie Page","Lana Rhoades","Lauren Phillips","Lexi Belle","Lisa Ann","Little Caprice","Luna Star","Madison Ivy","Mandy Muse","Maria Nagai","Mia Malkova","Mia Melano","Molly Little","Monique Alexander","Nicole Aniston","Nina North","Nikki Benz","Nina Hartley","Peta Jensen","Phoenix Marie","Piper Perri","Riley Reid","Romi Rain","Sasha Grey","Sara Jay","Serena Blair","Sinn Sage","Sky Bri","Sophie Dee","Stormy Daniels","Tasha Reign","Teanna Trump","Tori Black","Violet Myers","Whitney Westgate","Zoe Parker","Aidra Fox","Alina Lopez","Alexis Texas","Amarna Miller","Alyssa Reece","Angel Youngs","Aubrey Gold","Bailey Brooke","Bella Rolland","Blair Williams","Briana Banks","Chanel Preston","Chloe Cherry","Coco Austin","Courtney Taylor","Dakota Skye","Demi Sutra","Diana Prince","Dolly Leigh","Eden Ivy","Ella Knox","Ember Snow","Erika Bell","India Summer","Jade Kush","Jana Cova","Janet Mason","Jasmine James","Jessica Drake","Jessie Andrews","Jordan Capri","Julia Ann","Kagney Linn Karter","Karlee Grey","Kenzie Reeves","Kristen Scott","Leah Gotti","Lily Carter","London Keyes","Megan Rain","Mia Li","Mila Azul","Misha Cross","Molly Cavalli","Natalia Starr","Olivia Lua","Penny Pax","Rachel Starr","Reagan Foxx","Remy LaCroix","Riley Nixon","Riley Steele","Samantha Saint","Savannah Sixx","Scarlet Red","Sierra Skye","Sunny Leone","Valentina Nappi","Veronica Avluv","Victoria Cakes","Victoria June","Vicky Vette","Yasmin Lee","Abigail Mac","Aaliyah Love","Alyx Star","Briana Banks","Cali Carter","Camille Crimson","Chloe Amour","Daisy Ducati","Daphne Dare","Delilah Day","Destiny Cruz","Diana Doll","Ella Reese","Gia Derza","Gigi Allens","Giselle Leon","Holly Hendrix","Isla Ivy","Ivana Sugar","Jada Stevens","Jasmine Jae","Jazmin Luv","Jennifer White","Kali Roses","Kara Lee","Karmen Karma","Kasey Warner","Kathy Rose","Keisha Grey","Kira Perez","Kylie Rocket","Layla London","Lia Lin","Lily Rader","Lola Fae","Madi Meadows","Mandy Flores","Marley Brinx","Maya Bijou","Mia Rider","Mimi Miyagi","Miss Raquel","Nikki Dream","Nina Elle","Olivia Jayy","Penny Barber","Raven Bay","Raven Rockette","Roxie Sinner","Sasha Heart","Savannah Sixx","Sienna West","Skye Blue","Sydnee Steele","Tiffany Tatum","Tina Kay","Valentina Jewels","Veronica Vain","Vicky Chase","Violet Starr","Wendy Moon","Zelda Morrison"];
+const names=["Abella Danger","Adriana Chechik","Angela White","Anna Bell Peaks","Anya Olsen","Ariella Ferrera","Ariana Marie","Asa Akira","Autumn Falls","Ava Addams","Brittany Andrews","Brandi Love","Brooklyn Chase","Carmen Caliente","Carter Cruise","Casey Calvert","Charlotte Sartre","Cherie DeVille","Christy Canyon","Clara Mia","Dani Daniels","Dani Jensen","Dillion Harper","Elsa Jean","Emily Willis","Eva Elfie","Eva Lovia","Gianna Dior","Gina Valentina","Hannah Hays","Harley Dean","Isabella Soprano","Jasmine Grey","Jayden Cole","Jessa Rhodes","Jill Kassidy","Jillian Janson","Kendra Lust","Kira Noir","Kissa Sins","Kylie Page","Lana Rhoades","Lauren Phillips","Lexi Belle","Lisa Ann","Little Caprice","Luna Star","Madison Ivy","Mandy Muse","Maria Nagai","Mia Malkova","Mia Melano","Molly Little","Monique Alexander","Nicole Aniston","Nina North","Nikki Benz","Nina Hartley","Peta Jensen","Phoenix Marie","Piper Perri","Riley Reid","Romi Rain","Sasha Grey","Sara Jay","Serena Blair","Sinn Sage","Sky Bri","Sophie Dee","Stormy Daniels","Tasha Reign","Teanna Trump","Tori Black","Violet Myers","Whitney Westgate","Zoe Parker","Aidra Fox","Alina Lopez","Alexis Texas","Amarna Miller","Alyssa Reece","Angel Youngs","Aubrey Gold","Bailey Brooke","Bella Rolland","Blair Williams","Briana Banks","Chanel Preston","Chloe Cherry","Coco Austin","Courtney Taylor","Dakota Skye","Demi Sutra","Diana Prince","Dolly Leigh","Eden Ivy","Ella Knox","Ember Snow","Erika Bell","India Summer","Jade Kush","Jana Cova","Janet Mason","Jasmine James","Jessica Drake","Jessie Andrews","Jordan Capri","Julia Ann","Kagney Linn Karter","Karlee Grey","Kenzie Reeves","Kristen Scott","Leah Gotti","Lily Carter","London Keyes","Megan Rain","Mia Li","Mila Azul","Misha Cross","Molly Cavalli","Natalia Starr","Olivia Lua","Penny Pax","Rachel Starr","Reagan Foxx","Remy LaCroix","Riley Nixon","Riley Steele","Samantha Saint","Savannah Sixx","Scarlet Red","Sierra Skye","Sunny Leone","Valentina Nappi","Veronica Avluv","Victoria Cakes","Victoria June","Vicky Vette","Yasmin Lee","Abigail Mac","Aaliyah Love","Alyx Star","Briana Banks","Cali Carter","Camille Crimson","Chloe Amour","Daisy Ducati","Daphne Dare","Delilah Day","Destiny Cruz","Diana Doll","Ella Reese","Gia Derza","Gigi Allens","Giselle Leon","Holly Hendrix","Isla Ivy","Ivana Sugar","Jada Stevens","Jasmine Jae","Jazmin Luv","Jennifer White","Kali Roses","Kara Lee","Kasey Warner","Katalina Cruz","Katrina Jade","Kelly Divine","Lacy Lennon","Lana Violet","Lola Fae","Lexi Luna","Lily Lou","Luna Rival","Lyra Law","Maddy O'Reilly","Malena Morgan"];
 
-function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-
+function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
 function makePerson(){
- const category=["Leyenda","Promesa","Regular","Broma/Meme"][rand(0,3)];
- let min=60,max=84;
- if(category==="Leyenda"){min=85;max=99}
- if(category==="Promesa"){min=75;max=90}
- if(category==="Broma/Meme"){min=40;max=70}
- const ovr=rand(min,max);
- const v=x=>Math.max(1,Math.min(99,rand(ovr-8,ovr+7)));
- return {name:names[rand(0,names.length-1)],category,ovr,height:rand(160,188),nation:nations[rand(0,nations.length-1)],
- stats:{Velocidad:v(),Tecnica:v(),Fisico:v(),Defensa:v(),Pase:v(),Finalizacion:v()}};
+ const base=rand(40,90);
+ return {
+  name:names[Math.floor(Math.random()*names.length)],
+  ovr:base+rand(1,9),
+  height:rand(150,185),
+  nation:nations[Math.floor(Math.random()*nations.length)],
+  category:base>=85?"Icono":base>=75?"Oro":base>=65?"Plata":"Bronce"
+ };
 }
 
 function newAuction(room){
  const active=room.players.filter(p=>!p.squad[room.pos] && p.budget>0);
  const max=Math.max(1,...active.map(p=>p.budget));
  
- // Se agrega timeLeft de 20 segundos al estado inicial
- room.auction={person:makePerson(),start:rand(1,Math.min(100,max)),bid:0,leader:null,closed:false, timeLeft: 20};
+ room.auction={
+  person:makePerson(),
+  start:rand(1,Math.min(100,max)),
+  bid:0,
+  leader:null,
+  closed:false,
+  timeLeft: 20,
+  skips: [] // Registro de quién ha votado por skipear
+ };
  room.auction.bid=room.auction.start;
-
- // Limpiar timer anterior si existe
+ 
  if(room.timer) clearInterval(room.timer);
  
  room.timer = setInterval(() => {
@@ -49,10 +53,8 @@ function newAuction(room){
      return;
    }
    room.auction.timeLeft--;
-   // Enviar el "tick" del reloj a todos en la sala
    io.to(room.code).emit("tick", room.auction.timeLeft);
-
-   // Cuando el tiempo llega a 0, adjudicar automáticamente
+   
    if(room.auction.timeLeft <= 0) {
      clearInterval(room.timer);
      executeAward(room);
@@ -61,101 +63,166 @@ function newAuction(room){
 }
 
 function executeAward(room) {
- const a=room.auction;
+ const a = room.auction;
  if(!a || a.closed) return;
+ a.closed = true;
+ 
+ const active = room.players.filter(p => !p.squad[room.pos]);
+
  if(!a.leader) {
-   // Si el tiempo termina y nadie pujó, lanzamos una nueva subasta
-   newAuction(room);
-   broadcast(room);
-   return;
+   // Nadie pujó
+   if (active.length === 1) {
+     const lastPlayer = active[0];
+     if (!lastPlayer.soloSkipUsed) {
+       // Auto-skip porque es el último y no ha usado su skip en esta posición
+       lastPlayer.soloSkipUsed = true;
+       io.to(room.code).emit("reveal", { winner: null, person: a.person, msg: `Skipeada auto. por ${lastPlayer.name} (Último skip)` });
+       setTimeout(() => { newAuction(room); broadcast(room); }, 3000);
+       return;
+     } else {
+       // Ya usó su skip y nadie pujó, se le asigna a la fuerza por precio base
+       a.leader = lastPlayer.id;
+       a.bid = Math.min(a.start, lastPlayer.budget); 
+     }
+   } else {
+     // Hay varios jugadores y nadie pujó, se skipea
+     io.to(room.code).emit("reveal", { winner: null, person: a.person, msg: "Tiempo agotado. ¡Skipeada!" });
+     setTimeout(() => { newAuction(room); broadcast(room); }, 3000);
+     return;
+   }
  }
- a.closed=true;
- const winner=room.players.find(p=>p.id===a.leader);
- winner.budget-=a.bid;
- winner.squad[room.pos]={...a.person,price:a.bid,position:positions[room.pos][0]};
- io.to(room.code).emit("reveal",{winner:winner.name,person:a.person,price:a.bid});
+ 
+ // Adjudicar al líder de la subasta (o al último jugador forzado)
+ const winner = room.players.find(p=>p.id===a.leader);
+ if(winner) {
+    winner.budget -= a.bid;
+    winner.squad[room.pos] = {...a.person, price:a.bid, position:positions[room.pos][0]};
+    io.to(room.code).emit("reveal", { winner: winner.name, person: a.person, price: a.bid });
+ }
+ 
+ // Verificar si todos tienen a la jugadora
  if(room.players.every(p=>p.squad[room.pos])){
    room.pos++;
-   if(room.pos>=positions.length){room.finished=true;room.auction=null;broadcast(room);return;}
+   // Reseteamos el uso del "Solo Skip" para la nueva ronda
+   room.players.forEach(p => p.soloSkipUsed = false);
+   
+   if(room.pos>=positions.length){
+       room.finished=true;
+       room.auction=null;
+       broadcast(room);
+       return;
+   }
  }
- setTimeout(()=>{newAuction(room);broadcast(room)}, 1400);
+ setTimeout(()=>{newAuction(room);broadcast(room)}, 3000);
 }
 
 function publicState(room){
- return {code:room.code,maxPlayers:room.maxPlayers,started:room.started,finished:room.finished,pos:room.pos,
- players:room.players.map(p=>({id:p.id,name:p.name,budget:p.budget,squad:p.squad})),
- auction:room.auction ? {person:{height:room.auction.person.height,nation:room.auction.person.nation},start:room.auction.start,bid:room.auction.bid,leader:room.auction.leader,closed:room.auction.closed, timeLeft:room.auction.timeLeft} : null,
- host:room.host};
+ return {
+  code:room.code,
+  maxPlayers:room.maxPlayers,
+  started:room.started,
+  finished:room.finished,
+  pos:room.pos,
+  players:room.players.map(p=>({id:p.id,name:p.name,budget:p.budget,squad:p.squad, soloSkipUsed: p.soloSkipUsed})),
+  auction:room.auction ? {
+   person:{height:room.auction.person.height,nation:room.auction.person.nation},
+   start:room.auction.start,
+   bid:room.auction.bid,
+   leader:room.auction.leader,
+   closed:room.auction.closed,
+   timeLeft: room.auction.timeLeft,
+   skips: room.auction.skips
+  } : null,
+  host:room.host
+ };
 }
 
 function broadcast(room){io.to(room.code).emit("state",publicState(room));}
 
 io.on("connection",socket=>{
  socket.on("createRoom",(data,cb)=>{
-   const code=crypto.randomBytes(3).toString("hex").toUpperCase();
-   const p={id:socket.id,name:String(data.name||"Jugador 1").slice(0,18),budget:1000,squad:Array(11).fill(null)};
-   // Ajustamos el mínimo de jugadores a 2
-   rooms.set(code,{code,maxPlayers:Math.max(2,Math.min(8,Number(data.maxPlayers)||4)),players:[p],host:socket.id,started:false,finished:false,pos:0,auction:null});
-   socket.join(code);socket.room=code;
-   cb({ok:true,code});broadcast(rooms.get(code));
+  const code=crypto.randomBytes(3).toString("hex").toUpperCase();
+  const p={id:socket.id,name:String(data.name||"Jugador 1").slice(0,18),budget:1000,squad:Array(11).fill(null), soloSkipUsed: false};
+  rooms.set(code,{code,maxPlayers:Math.max(2,Math.min(8,Number(data.maxPlayers)||4)),players:[p],host:socket.id,started:false,finished:false,pos:0,auction:null});
+  socket.join(code);socket.room=code;
+  cb({ok:true,code});broadcast(rooms.get(code));
  });
- 
+
  socket.on("joinRoom",(data,cb)=>{
-   const code=String(data.code||"").toUpperCase(),room=rooms.get(code);
-   if(!room)return cb({ok:false,msg:"La sala no existe."});
-   if(room.started)return cb({ok:false,msg:"La partida ya comenzó."});
-   if(room.players.length>=room.maxPlayers)return cb({ok:false,msg:"La sala está llena."});
-   const p={id:socket.id,name:String(data.name||"Jugador").slice(0,18),budget:1000,squad:Array(11).fill(null)};
-   room.players.push(p);socket.join(code);socket.room=code;cb({ok:true,code});broadcast(room);
+  const code=String(data.code||"").toUpperCase(),room=rooms.get(code);
+  if(!room)return cb({ok:false,msg:"La sala no existe."});
+  if(room.started)return cb({ok:false,msg:"La partida ya comenzó."});
+  if(room.players.length>=room.maxPlayers)return cb({ok:false,msg:"La sala está llena."});
+  const p={id:socket.id,name:String(data.name||"Jugador").slice(0,18),budget:1000,squad:Array(11).fill(null), soloSkipUsed: false};
+  room.players.push(p);socket.join(code);socket.room=code;cb({ok:true,code});broadcast(room);
  });
- 
+
  socket.on("start",cb=>{
-   const room=rooms.get(socket.room);if(!room)return;
-   if(socket.id!==room.host)return cb?.({ok:false,msg:"Solo el anfitrión puede iniciar."});
-   // Verificamos que haya al menos 2 jugadores y ya no validamos maxPlayers estricto para iniciar
-   if(room.players.length<2)return cb?.({ok:false,msg:"Se necesitan al menos 2 jugadores para iniciar."});
-   room.started=true;room.pos=0;newAuction(room);broadcast(room);cb?.({ok:true});
+  const room=rooms.get(socket.room);
+  if(room&&room.host===socket.id&&!room.started&&room.players.length>1){
+   room.started=true;newAuction(room);broadcast(room);cb({ok:true});
+  }
+ });
+
+ socket.on("bid",cb=>{
+  const room=rooms.get(socket.room);
+  if(room&&room.started&&!room.finished){
+   const a=room.auction,p=room.players.find(x=>x.id===socket.id);
+   if(a&&!a.closed&&p&&!p.squad[room.pos]&&a.leader!==p.id&&p.budget>=a.bid+5){
+    a.bid+=5;a.leader=p.id;
+    if(a.timeLeft < 5) {
+      a.timeLeft = 5;
+    }
+    broadcast(room);cb({ok:true});
+   }
+  }
  });
  
- socket.on("bid",(add,cb)=>{
-   const room=rooms.get(socket.room);if(!room||!room.started||room.finished)return;
-   const p=room.players.find(x=>x.id===socket.id),a=room.auction;
-   if(!p||!a||a.closed)return;
-   if(p.squad[room.pos])return cb?.({ok:false,msg:"Ya tienes esta posición."});
-   const n=a.bid+Number(add);
-   if(![5,10,50,100].includes(Number(add)))return cb?.({ok:false,msg:"Puja no válida."});
-   if(p.budget<n)return cb?.({ok:false,msg:"No tienes suficiente presupuesto."});
+ socket.on("skip", cb => {
+   const room = rooms.get(socket.room);
+   if(!room || !room.started || room.finished) return;
+   const a = room.auction;
+   const p = room.players.find(x => x.id === socket.id);
    
-   a.bid=n;
-   a.leader=p.id;
+   if(!a || a.closed || !p) return;
+   if(p.squad[room.pos]) return cb?.({ok:false, msg: "Ya tienes esta posición, no puedes skipear."});
+   if(a.leader === p.id) return cb?.({ok:false, msg: "No puedes skipear si vas ganando la puja."});
    
-   // Mecánica Anti-snipe: Si quedan menos de 5 segundos, el reloj vuelve a 5s
-   if(a.timeLeft < 5) a.timeLeft = 5;
+   if(!a.skips.includes(p.id)) {
+     a.skips.push(p.id);
+   }
    
-   broadcast(room);cb?.({ok:true});
- });
- 
- socket.on("award",cb=>{
-   const room=rooms.get(socket.room);if(!room||socket.id!==room.host||!room.auction)return;
-   if(!room.auction.leader)return cb?.({ok:false,msg:"Debe existir una puja."});
+   const active = room.players.filter(x => !x.squad[room.pos]);
    
-   // Usamos la nueva función para que el botón manual y el timer automático compartan lógica
-   executeAward(room);
+   // Si es el último jugador verificamos su skip personal
+   if(active.length === 1) {
+     if(p.soloSkipUsed) return cb?.({ok:false, msg: "Ya usaste tu único skip en esta posición."});
+     p.soloSkipUsed = true;
+   }
+   
+   // Verificamos si todos los jugadores activos ya votaron para saltar
+   if(a.skips.length >= active.length) {
+     if(room.timer) clearInterval(room.timer);
+     a.closed = true;
+     io.to(room.code).emit("reveal", { winner: null, person: a.person, msg: "¡Skipeada por votación!" });
+     setTimeout(() => { newAuction(room); broadcast(room); }, 3000);
+   } else {
+     broadcast(room); // Refrescar botones
+   }
    cb?.({ok:true});
  });
- 
+
  socket.on("disconnect",()=>{
-   const room=rooms.get(socket.room);if(!room)return;
-   if(!room.started){
-     room.players=room.players.filter(p=>p.id!==socket.id);
-     if(socket.id===room.host && room.players.length){room.host=room.players[0].id}
-     if(!room.players.length){
-       // Prevenir fugas de memoria limpiando el timer si la sala se vacía
-       if(room.timer) clearInterval(room.timer);
-       rooms.delete(room.code);
-     } else broadcast(room);
+  const room=rooms.get(socket.room);
+  if(room&&!room.started){
+   room.players=room.players.filter(p=>p.id!==socket.id);
+   if(!room.players.length)rooms.delete(room.code);
+   else{
+    if(room.host===socket.id)room.host=room.players[0].id;
+    broadcast(room);
    }
+  }
  });
 });
 
-server.listen(process.env.PORT||3000,()=>console.log("Subasta Pornera online en puerto "+(process.env.PORT||3000)));
+server.listen(3000,()=>console.log("Server port 3000"));
