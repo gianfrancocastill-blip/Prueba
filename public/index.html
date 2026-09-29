@@ -7,22 +7,12 @@
 <div class="logo">SUBASTA <span>PORNERA</span></div>
 <section id="setup" class="setup panel"><h2>Crear o unirse a una sala</h2>
 <input id="name" placeholder="Tu nombre o apodo" maxlength="18">
-<select id="max"><option value="3">3 jugadores</option><option value="4" selected>4 jugadores</option><option value="5">5 jugadores</option><option value="6">6 jugadores</option><option value="7">7 jugadores</option><option value="8">8 jugadores</option></select>
+<select id="max"><option value="2">2 jugadores</option><option value="3">3 jugadores</option><option value="4" selected>4 jugadores</option><option value="5">5 jugadores</option><option value="6">6 jugadores</option><option value="7">7 jugadores</option><option value="8">8 jugadores</option></select>
 <button class="btn green" onclick="create()">CREAR SALA</button><hr><input id="code" placeholder="Código de sala"><button class="btn blue" onclick="join()">UNIRSE</button><p id="msg"></p></section>
 
 <section id="app" class="hidden">
-<div class="panel row">
-  <div><b>Sala: <span id="room"></span></b> <span id="count" style="margin-left: 10px; color: #65e6a1;"></span></div>
-  <button id="start" class="btn green hidden" onclick="start()">INICIAR PARTIDA</button>
-</div>
-
-<!-- Sala de espera visual para ver quiénes entran -->
-<div id="wait" class="panel">
-  <h2>Jugadores en la sala</h2>
-  <p style="color: #9da8ba; margin-top: -5px;">Esperando a que se unan todos los amigos...</p>
-  <div id="waitingList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;"></div>
-</div>
-
+<div class="panel row"><b>Sala: <span id="room"></span></b><span id="count"></span><button id="start" class="btn green hidden" onclick="start()">INICIAR SUBASTA</button></div>
+<div id="wait" class="panel"><h2>Esperando jugadores</h2><div id="waiting"></div></div>
 <div id="game" class="grid hidden">
 <main class="panel"><div class="auction"><div class="anon"><div class="sil"></div><h2 id="pos"></h2><div class="chips"><span class="chip" id="height"></span><span class="chip" id="nation"></span><span class="chip" id="initial"></span></div><p>Nombre, categoría y OVR ocultos.</p></div>
 <div>
@@ -33,7 +23,7 @@
     </div>
     <div style="text-align: right;">
       <p style="margin: 0 0 5px 0; font-size: 14px;">TIEMPO</p>
-      <div class="price" id="timer" style="color: #65e6a1;">15s</div>
+      <div class="price" id="timer" style="color: #65e6a1;">20s</div>
     </div>
   </div>
   <div class="panel" id="leader">Sin pujas</div>
@@ -62,50 +52,18 @@ socket.on("state",s=>{state=s;me=me||s.players.find(p=>p.id===socket.id)?.id;ren
 socket.on("reveal",r=>{$("reveal").classList.remove("hidden");$("reveal").innerHTML=`<div class="row"><div><h2>🔨 ${r.winner} — €${r.price}M</h2><b>${r.person.name}</b><p>${r.person.nation} · ${r.person.height} cm · ${r.person.category}</p></div><div class="ov">${r.person.ovr}</div></div>`});
 
 function render(){
- $("count").textContent=`(${state.players.length}/${state.maxPlayers} jugadores)`;
- 
- // Renderizar la lista de jugadores que se van conectando en la sala de espera
- $("waitingList").innerHTML = state.players.map((p, index) => `
-   <div style="background: #0b1119; border: 1px solid #2a3446; padding: 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between;">
-     <div>
-       <b style="font-size: 15px; color: #fff;">👤 ${p.name}</b>
-       <div style="font-size: 12px; color: #9da8ba; margin-top: 2px;">${index === 0 ? '👑 Anfitrión' : 'Participante'}</div>
-     </div>
-   </div>
- `).join("");
-
+ $("count").textContent=`${state.players.length}/${state.maxPlayers} jugadores`;
  $("waiting").classList.toggle("hidden",state.started);
- 
- // El botón de iniciar partida solo lo ve el anfitrión y se activa cuando hay al menos 3 jugadores o se llena la sala
- const isHost = state.players.find(p=>p.id===socket.id)?.id === state.host;
- const canStart = isHost && state.players.length >= 3 && !state.started;
- $("start").classList.toggle("hidden", !canStart);
-
+ $("start").classList.toggle("hidden",!(state.players.find(p=>p.id===socket.id)?.id===state.host && state.players.length>=2 && !state.started));
  if(!state.started)return;
- 
  $("game").classList.remove("hidden");$("wait").classList.add("hidden");
  if(state.finished){$("game").innerHTML='<div class="panel"><h1>🏆 TORNEO FINAL</h1><p>Todos completaron sus 11 posiciones. Aquí comienza la comparación por OVR.</p></div>';return}
- 
- const a=state.auction;
- $("pos").textContent=posNames[state.pos].toUpperCase();
- $("height").textContent="Altura: "+a.person.height+" cm";
- $("nation").textContent=a.person.nation;
- $("initial").textContent="Inicial: €"+a.start+"M";
- $("bid").textContent="€"+a.bid+"M";
+ const a=state.auction;$("pos").textContent=posNames[state.pos].toUpperCase();$("height").textContent="Altura: "+a.person.height+" cm";$("nation").textContent=a.person.nation;$("initial").textContent="Inicial: €"+a.start+"M";$("bid").textContent="€"+a.bid+"M";
  $("timer").textContent = a.timeLeft + "s";
- 
- const lead=state.players.find(p=>p.id===a.leader);
- $("leader").textContent=lead?"🔥 "+lead.name+" va ganando":"Sin pujas";
- 
+ const lead=state.players.find(p=>p.id===a.leader);$("leader").textContent=lead?"🔥 "+lead.name+" va ganando":"Sin pujas";
  $("award").classList.toggle("hidden",state.host!==socket.id||a.closed);
- 
- document.querySelectorAll(".bid").forEach((b,i)=>{
-   const adds=[5,10,50,100],p=state.players.find(x=>x.id===socket.id);
-   b.disabled=a.closed||!p||p.squad[state.pos]||p.budget<a.bid+adds[i];
- });
- 
+ document.querySelectorAll(".bid").forEach((b,i)=>{const adds=[5,10,50,100],p=state.players.find(x=>x.id===socket.id);b.disabled=a.closed||!p||p.squad[state.pos]||p.budget<a.bid+adds[i]});
  $("players").innerHTML=state.players.map(p=>`<div class="pc"><b>${p.name}</b><div class="money">€${p.budget}M</div><small>${p.squad.filter(Boolean).length}/11</small></div>`).join("");
- const mep=state.players.find(p=>p.id===socket.id);
- $("squad").innerHTML=mep.squad.map((s,i)=>`<div class="slot"><b>${posNames[i]}</b>${s?`${s.name}<br><span class="ovr">${s.ovr} OVR</span>`:"Vacío"}</div>`).join("");
+ const mep=state.players.find(p=>p.id===socket.id);$("squad").innerHTML=mep.squad.map((s,i)=>`<div class="slot"><b>${posNames[i]}</b>${s?`${s.name}<br><span class="ovr">${s.ovr} OVR</span>`:"Vacío"}</div>`).join("");
 }
 </script></body></html>
