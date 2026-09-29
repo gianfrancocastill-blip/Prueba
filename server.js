@@ -1,6 +1,3 @@
-app.get('/', (req, res) => {
-    res.send('¡El servidor de Creadores FC está funcionando correctamente! ⚽');
-});
 const express = require('express');
 const cors = require('cors');
 
@@ -8,7 +5,7 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // Necesario para parsear el body en POST
 
-// --- 1. BASE DE DATOS DE JUGADORAS (Con OVR Estático de la Opción A) ---
+// --- 1. BASE DE DATOS DE JUGADORAS (Con OVR Estático) ---
 const rawPlayers = [
  ["Ava Koxxx", 191, "Reino Unido", 75, "POR"],
  ["Rocky Emerson", 190, "EE.UU.", 76, "POR"],
@@ -251,13 +248,13 @@ app.post('/api/pack/bronce', (req, res) => {
 });
 
 app.post('/api/pack/plata', (req, res) => {
-    let result = openPack(2500, 3); // Podrías añadir lógica de probabilidad aquí
+    let result = openPack(2500, 3);
     if (result.error) return res.status(400).json(result);
     res.json(result);
 });
 
 app.post('/api/pack/oro', (req, res) => {
-    let result = openPack(7500, 3); // Lógica de probabilidad mejorada aquí
+    let result = openPack(7500, 3);
     if (result.error) return res.status(400).json(result);
     res.json(result);
 });
@@ -283,7 +280,7 @@ app.post('/api/market/sell', (req, res) => {
     const marketItem = {
         ...card,
         price: parseInt(price),
-        sellerId: 'me' // En un juego real aquí va el ID del usuario
+        sellerId: 'me'
     };
     
     marketCards.push(marketItem);
@@ -318,6 +315,11 @@ app.post('/api/market/buy', (req, res) => {
     userTeam.push(cardToBuy);
 
     res.json({ message: "Carta comprada", coins: userCoins, card: cardToBuy });
+});
+
+// Ruta principal para comprobar que el servidor está vivo
+app.get('/', (req, res) => {
+    res.send('¡El servidor de Creadores FC está funcionando correctamente! ⚽');
 });
 
 // --- INICIAR SERVIDOR ---
