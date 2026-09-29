@@ -36,11 +36,9 @@ function newAuction(room){
  const active=room.players.filter(p=>!p.squad[room.pos] && p.budget>0);
  const max=Math.max(1,...active.map(p=>p.budget));
  
- // Se agrega timeLeft de 15 segundos al estado inicial
  room.auction={person:makePerson(),start:rand(1,Math.min(100,max)),bid:0,leader:null,closed:false, timeLeft: 15};
  room.auction.bid=room.auction.start;
 
- // Limpiar timer anterior si existe
  if(room.timer) clearInterval(room.timer);
  
  room.timer = setInterval(() => {
@@ -49,10 +47,8 @@ function newAuction(room){
      return;
    }
    room.auction.timeLeft--;
-   // Enviar el "tick" del reloj a todos en la sala
    io.to(room.code).emit("tick", room.auction.timeLeft);
 
-   // Cuando el tiempo llega a 0, adjudicar automáticamente
    if(room.auction.timeLeft <= 0) {
      clearInterval(room.timer);
      executeAward(room);
@@ -64,7 +60,6 @@ function executeAward(room) {
  const a=room.auction;
  if(!a || a.closed) return;
  if(!a.leader) {
-   // Si el tiempo termina y nadie pujó, lanzamos una nueva subasta
    newAuction(room);
    broadcast(room);
    return;
@@ -111,7 +106,8 @@ io.on("connection",socket=>{
  socket.on("start",cb=>{
    const room=rooms.get(socket.room);if(!room)return;
    if(socket.id!==room.host)return cb?.({ok:false,msg:"Solo el anfitrión puede iniciar."});
-   if(room.players.length<3 || room.players.length!==room.maxPlayers)return cb?.({ok:false,msg:`Se necesitan exactamente ${room.maxPlayers} jugadores.`});
+   // Permitimos iniciar si está lleno o si tiene al menos 3 jugadores según las reglas del juego
+   if(room.players.length < 3 || room.players.length > room.maxPlayers)return cb?.({ok:false,msg:`Se necesitan entre 3 y ${room.maxPlayers} jugadores.`});
    room.started=true;room.pos=0;newAuction(room);broadcast(room);cb?.({ok:true});
  });
  
@@ -126,8 +122,6 @@ io.on("connection",socket=>{
    
    a.bid=n;
    a.leader=p.id;
-   
-   // Mecánica Anti-snipe: Si quedan menos de 5 segundos, el reloj vuelve a 5s
    if(a.timeLeft < 5) a.timeLeft = 5;
    
    broadcast(room);cb?.({ok:true});
@@ -136,8 +130,6 @@ io.on("connection",socket=>{
  socket.on("award",cb=>{
    const room=rooms.get(socket.room);if(!room||socket.id!==room.host||!room.auction)return;
    if(!room.auction.leader)return cb?.({ok:false,msg:"Debe existir una puja."});
-   
-   // Usamos la nueva función para que el botón manual y el timer automático compartan lógica
    executeAward(room);
    cb?.({ok:true});
  });
@@ -148,7 +140,6 @@ io.on("connection",socket=>{
      room.players=room.players.filter(p=>p.id!==socket.id);
      if(socket.id===room.host && room.players.length){room.host=room.players[0].id}
      if(!room.players.length){
-       // Prevenir fugas de memoria limpiando el timer si la sala se vacía
        if(room.timer) clearInterval(room.timer);
        rooms.delete(room.code);
      } else broadcast(room);
