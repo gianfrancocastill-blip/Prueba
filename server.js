@@ -1,3 +1,6 @@
+app.get('/', (req, res) => {
+    res.send('¡El servidor de Creadores FC está funcionando correctamente! ⚽');
+});
 const express = require('express');
 const cors = require('cors');
 
