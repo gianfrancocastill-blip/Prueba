@@ -1,69 +1,176 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Subasta Pornera</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Draft Stars</title>
+<script src="/socket.io/socket.io.js"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#080b12;color:#f4f7fb;font-family:Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:22px}.panel{background:#121925;border:1px solid #2b3648;border-radius:16px;padding:18px;margin-bottom:16px}.logo{font-size:30px;font-weight:900;margin-bottom:18px}.logo span{color:#65e6a1}.setup{max-width:600px;margin:70px auto}input,select{width:100%;padding:12px;background:#0b111a;border:1px solid #334158;color:white;border-radius:9px;margin:5px 0}.btn{padding:12px 16px;border:0;border-radius:9px;font-weight:800;cursor:pointer}.green{background:#65e6a1;color:#07120c}.blue{background:#263750;color:#fff}.gold{background:#ffd166;color:#211905}.hidden{display:none!important}.grid{display:grid;grid-template-columns:1.5fr .8fr;gap:16px}.auction{display:grid;grid-template-columns:1fr 1fr;gap:12px}.anon{min-height:300px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#0c121b;border-radius:14px}.sil{width:100px;height:130px;position:relative}.sil:before{content:"";position:absolute;top:0;left:25px;width:50px;height:50px;border-radius:50%;background:#68758a}.sil:after{content:"";position:absolute;bottom:0;width:100px;height:80px;border-radius:50px 50px 12px 12px;background:#68758a}.price{font-size:42px;color:#ffd166;font-weight:900}.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}.chip{background:#202b3c;border:1px solid #35445c;border-radius:999px;padding:7px 9px;font-size:13px}.bids{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bid{padding:17px;background:#1c2a3d;color:white;border:1px solid #34455e;border-radius:10px;font-weight:900}.bid:disabled{opacity:.25}.players{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pc{background:#0c121b;padding:10px;border-radius:10px;border:1px solid #29364a}.money{color:#65e6a1;font-weight:900}.squad{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.slot{background:#0b1119;border:1px solid #2a3446;border-radius:8px;padding:8px;min-height:60px}.slot b{display:block;font-size:11px;color:#9da8ba}.ovr{color:#ffd166;font-weight:900}.reveal{margin-top:12px;background:#192333;border:1px solid #485b76;padding:16px;border-radius:12px}.reveal .ov{font-size:48px;color:#ffd166;font-weight:900}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}@media(max-width:800px){.grid,.auction{grid-template-columns:1fr}.squad{grid-template-columns:1fr 1fr}}
-</style></head>
-<body><div class="wrap">
-<div class="logo">SUBASTA <span>PORNERA</span></div>
-<section id="setup" class="setup panel"><h2>Crear o unirse a una sala</h2>
-<input id="name" placeholder="Tu nombre o apodo" maxlength="18">
-<select id="max"><option value="2">2 jugadores</option><option value="3">3 jugadores</option><option value="4" selected>4 jugadores</option><option value="5">5 jugadores</option><option value="6">6 jugadores</option><option value="7">7 jugadores</option><option value="8">8 jugadores</option></select>
-<button class="btn green" onclick="create()">CREAR SALA</button><hr><input id="code" placeholder="Código de sala"><button class="btn blue" onclick="join()">UNIRSE</button><p id="msg"></p></section>
+ :root{--bg:#0f172a;--c:#1e293b;--t:#f8fafc;--a:#3b82f6;--g:#10b981}
+ *{box-sizing:border-box;font-family:system-ui,sans-serif}
+ body{margin:0;padding:12px;background:var(--bg);color:var(--t)}
+ h1,h2,h3,p{margin:0}
+ .card{background:var(--c);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 4px 6px -1px #0005}
+ .btn{background:var(--a);color:#fff;border:none;padding:12px 20px;border-radius:8px;font-weight:bold;cursor:pointer;width:100%}
+ .btn:disabled{opacity:.5;cursor:not-allowed}
+ .btn.gold{background:var(--g)}
+ .hidden{display:none!important}
+ .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+ .row{display:flex;justify-content:space-between;align-items:center}
+ .player-card{background:#2a364a;padding:12px;border-radius:8px;border-left:4px solid var(--a)}
+ .ov{font-size:24px;font-weight:900;color:var(--g)}
+ .squad-list{margin-top:8px;font-size:12px;color:#cbd5e1;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+ .sq-item{background:#1e293b;padding:4px 8px;border-radius:4px;border:1px solid #334155}
+ .bids{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+ .timer{font-size:32px;font-weight:bold;text-align:center;color:var(--a);margin:10px 0}
+ #reveal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--c);padding:24px;border-radius:16px;box-shadow:0 10px 25px #000;z-index:100;width:90%;max-width:400px;border:2px solid var(--g);text-align:center}
+</style>
+</head>
+<body>
 
-<section id="app" class="hidden">
-<div class="panel row"><b>Sala: <span id="room"></span></b><span id="count"></span><button id="start" class="btn green hidden" onclick="start()">INICIAR SUBASTA</button></div>
-<div id="wait" class="panel"><h2>Esperando jugadores</h2><div id="waiting"></div></div>
-<div id="game" class="grid hidden">
-<main class="panel"><div class="auction"><div class="anon"><div class="sil"></div><h2 id="pos"></h2><div class="chips"><span class="chip" id="height"></span><span class="chip" id="nation"></span><span class="chip" id="initial"></span></div><p>Nombre, categoría y OVR ocultos.</p></div>
-<div>
-  <div style="display:flex; justify-content:space-between; align-items:center;">
+<div id="login" class="card">
+ <h1>Draft Stars 🔞</h1><p style="margin-bottom:16px;color:#94a3b8">Crea tu equipo de ensueño</p>
+ <input id="nick" placeholder="Tu nombre" style="width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:none;background:#2a364a;color:#fff">
+ <div class="row" style="gap:12px">
+  <button class="btn" onclick="create()">CREAR SALA</button>
+  <button class="btn gold" onclick="join()">UNIRSE</button>
+ </div>
+</div>
+
+<div id="lobby" class="card hidden">
+ <div class="row"><h2>Sala: <span id="code" style="color:var(--a)"></span></h2><span id="pcount"></span></div>
+ <div id="plist" style="margin:16px 0;display:flex;flex-direction:column;gap:8px"></div>
+ <button id="start" class="btn gold hidden" onclick="socket.emit('start')">INICIAR DRAFT</button>
+ <p id="wait" class="hidden" style="text-align:center;color:#94a3b8">Esperando al host...</p>
+</div>
+
+<div id="game" class="hidden">
+ <div class="card" style="text-align:center">
+  <h2 style="color:var(--g)">Ronda <span id="ronda"></span> - <span id="pos"></span></h2>
+  <div class="timer">⏳ <span id="time">20</span>s</div>
+  <div style="background:#2a364a;padding:16px;border-radius:12px;margin-top:12px">
+   <div class="row" style="justify-content:center;gap:12px">
     <div>
-      <p style="margin: 0 0 5px 0; font-size: 14px;">PUJA ACTUAL</p>
-      <div class="price" id="bid"></div>
+     <div style="font-size:12px;color:#94a3b8">PRECIO BASE</div>
+     <div style="font-size:24px;font-weight:bold">€<span id="base"></span>M</div>
     </div>
-    <div style="text-align: right;">
-      <p style="margin: 0 0 5px 0; font-size: 14px;">TIEMPO</p>
-      <div class="price" id="timer" style="color: #65e6a1;">20s</div>
+    <div style="border-left:1px solid #475569;padding-left:12px">
+     <div style="font-size:12px;color:#94a3b8">PUJA ACTUAL</div>
+     <div style="font-size:24px;font-weight:bold;color:var(--g)">€<span id="bid"></span>M</div>
     </div>
+   </div>
+   <p id="leader" style="margin-top:8px;font-weight:bold;color:#facc15"></p>
   </div>
-  <div class="panel" id="leader">Sin pujas</div>
-  <div class="bids"><button class="bid" onclick="bid(5)">+€5M</button><button class="bid" onclick="bid(10)">+€10M</button><button class="bid" onclick="bid(50)">+€50M</button><button class="bid" onclick="bid(100)">+€100M</button></div><button id="award" class="btn gold hidden" style="width:100%;margin-top:12px" onclick="award()">🔨 ADJUDICAR</button>
-</div></div><div id="reveal" class="reveal hidden"></div></main>
-<aside class="panel"><h3>Jugadores</h3><div id="players" class="players"></div><h3 style="margin-top:16px">Tu plantilla</h3><div id="squad" class="squad"></div></aside>
-</div></section></div>
-<script src="/socket.io/socket.io.js"></script><script>
-const socket=io();let me=null,room=null,state=null;
-const posNames=["Arquera","Lateral derecha","Defensa central","Defensa central","Lateral izquierda","Mediocampista","Mediocampista","Mediocampista","Extrema derecha","Delantera","Extrema izquierda"];
-function $(x){return document.getElementById(x)}
-function msg(x){$("msg").textContent=x}
-function create(){socket.emit("createRoom",{name:$("name").value,maxPlayers:$("max").value},r=>{if(!r.ok)return msg(r.msg);room=r.code;enter();})}
-function join(){socket.emit("joinRoom",{name:$("name").value,code:$("code").value},r=>{if(!r.ok)return msg(r.msg);room=r.code;enter();})}
-function enter(){$("setup").classList.add("hidden");$("app").classList.remove("hidden");$("room").textContent=room}
-function start(){socket.emit("start",r=>{if(r&&!r.ok)alert(r.msg)})}
-function bid(n){socket.emit("bid",n,r=>{if(r&&!r.ok)alert(r.msg)})}
-function award(){socket.emit("award",r=>{if(r&&!r.ok)alert(r.msg)})}
+  <div class="bids">
+   <button class="btn bid" onclick="socket.emit('bid')">PUJAR +€5M</button>
+  </div>
+  <button id="skip-btn" class="btn hidden" style="width:100%;margin-top:12px;background:#e66565;color:#fff" onclick="skip()">⏭️ SKIPEAR</button>
+ </div>
+ <div class="grid" id="players"></div>
+</div>
 
-socket.on("tick", t => {
-  const tmr = $("timer");
-  if (tmr) tmr.textContent = t + "s";
-});
+<div id="reveal" class="hidden"></div>
 
-socket.on("state",s=>{state=s;me=me||s.players.find(p=>p.id===socket.id)?.id;render()});
-socket.on("reveal",r=>{$("reveal").classList.remove("hidden");$("reveal").innerHTML=`<div class="row"><div><h2>🔨 ${r.winner} — €${r.price}M</h2><b>${r.person.name}</b><p>${r.person.nation} · ${r.person.height} cm · ${r.person.category}</p></div><div class="ov">${r.person.ovr}</div></div>`});
+<script>
+ const socket=io();
+ const $=id=>document.getElementById(id);
+ let state=null;
 
-function render(){
- $("count").textContent=`${state.players.length}/${state.maxPlayers} jugadores`;
- $("waiting").classList.toggle("hidden",state.started);
- $("start").classList.toggle("hidden",!(state.players.find(p=>p.id===socket.id)?.id===state.host && state.players.length>=2 && !state.started));
- if(!state.started)return;
- $("game").classList.remove("hidden");$("wait").classList.add("hidden");
- if(state.finished){$("game").innerHTML='<div class="panel"><h1>🏆 TORNEO FINAL</h1><p>Todos completaron sus 11 posiciones. Aquí comienza la comparación por OVR.</p></div>';return}
- const a=state.auction;$("pos").textContent=posNames[state.pos].toUpperCase();$("height").textContent="Altura: "+a.person.height+" cm";$("nation").textContent=a.person.nation;$("initial").textContent="Inicial: €"+a.start+"M";$("bid").textContent="€"+a.bid+"M";
- $("timer").textContent = a.timeLeft + "s";
- const lead=state.players.find(p=>p.id===a.leader);$("leader").textContent=lead?"🔥 "+lead.name+" va ganando":"Sin pujas";
- $("award").classList.toggle("hidden",state.host!==socket.id||a.closed);
- document.querySelectorAll(".bid").forEach((b,i)=>{const adds=[5,10,50,100],p=state.players.find(x=>x.id===socket.id);b.disabled=a.closed||!p||p.squad[state.pos]||p.budget<a.bid+adds[i]});
- $("players").innerHTML=state.players.map(p=>`<div class="pc"><b>${p.name}</b><div class="money">€${p.budget}M</div><small>${p.squad.filter(Boolean).length}/11</small></div>`).join("");
- const mep=state.players.find(p=>p.id===socket.id);$("squad").innerHTML=mep.squad.map((s,i)=>`<div class="slot"><b>${posNames[i]}</b>${s?`${s.name}<br><span class="ovr">${s.ovr} OVR</span>`:"Vacío"}</div>`).join("");
-}
-</script></body></html>
+ function create(){socket.emit("createRoom",{name:$("nick").value,maxPlayers:4},r=>{if(r.ok)$("login").classList.add("hidden")})}
+ function join(){
+  const c=prompt("Código de sala:");
+  if(c)socket.emit("joinRoom",{code:c,name:$("nick").value},r=>{
+   if(r.ok)$("login").classList.add("hidden");else alert(r.msg);
+  });
+ }
+ function skip(){socket.emit("skip",r=>{if(r&&!r.ok)alert(r.msg)})}
+
+ socket.on("tick", t => {
+   $("time").textContent = t;
+   if(t <= 5) $("time").style.color = "#ef4444";
+   else $("time").style.color = "var(--a)";
+ });
+
+ socket.on("reveal", r => {
+  $("reveal").classList.remove("hidden");
+  if(r.winner === null) {
+    $("reveal").innerHTML=`<div class="row" style="flex-direction:column;gap:12px"><div><h2>⏭️ ${r.msg}</h2><b>${r.person.name}</b><p>${r.person.nation} · ${r.person.height} cm · ${r.person.category}</p></div><div class="ov" style="color:#68758a">${r.person.ovr}</div></div>`;
+  } else {
+    $("reveal").innerHTML=`<div class="row" style="flex-direction:column;gap:12px"><div><h2>🔨 ${r.winner} — €${r.price}M</h2><b>${r.person.name}</b><p>${r.person.nation} · ${r.person.height} cm · ${r.person.category}</p></div><div class="ov">${r.person.ovr}</div></div>`;
+  }
+ });
+
+ socket.on("state",s=>{
+  state=s;
+  $("reveal").classList.add("hidden");
+  
+  if(!s.started){
+   $("lobby").classList.remove("hidden");
+   $("code").textContent=s.code;
+   $("pcount").textContent=`${s.players.length}/${s.maxPlayers}`;
+   $("plist").innerHTML=s.players.map(p=>`<div class="player-card" style="border-left-color:${p.id===s.host?'var(--g)':'var(--a)'}">${p.id===s.host?'👑 ':''}${p.name}</div>`).join("");
+   if(socket.id===s.host){$("start").classList.remove("hidden");$("wait").classList.add("hidden")}
+   else{$("start").classList.add("hidden");$("wait").classList.remove("hidden")}
+   return;
+  }
+  
+  $("lobby").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  
+  if(s.finished){
+   $("game").innerHTML=`<div class="card"><h1 style="text-align:center;color:var(--g)">¡DRAFT FINALIZADO!</h1></div><div class="grid" id="players"></div>`;
+  }
+  
+  const a=s.auction;
+  if(a){
+   const posList=["POR","LD","DFC","DFC","LI","MC","MC","MC","ED","DC","EI"];
+   $("ronda").textContent=s.pos+1;
+   $("pos").textContent=posList[s.pos];
+   $("base").textContent=a.start;
+   $("bid").textContent=a.bid;
+   const lead=s.players.find(p=>p.id===a.leader);
+   $("leader").textContent=lead?"🔥 "+lead.name+" va ganando":"Sin pujas";
+   
+   document.querySelectorAll(".bid").forEach((b,i)=>{
+    const adds=[5];
+    const p=s.players.find(x=>x.id===socket.id);
+    b.disabled=a.closed || !p || p.squad[s.pos] || p.budget < a.bid+adds[i];
+   });
+   
+   const skipBtn = $("skip-btn");
+   if(skipBtn) {
+     const p = s.players.find(x => x.id === socket.id);
+     const isActive = p && !p.squad[s.pos];
+     skipBtn.classList.toggle("hidden", !isActive || a.closed);
+     
+     if(isActive) {
+       const activeCount = s.players.filter(x => !x.squad[s.pos]).length;
+       const hasSkipped = a.skips.includes(socket.id);
+       const isLeader = a.leader === socket.id;
+       
+       skipBtn.disabled = a.closed || hasSkipped || isLeader || (activeCount === 1 && p.soloSkipUsed);
+       
+       if(activeCount === 1) {
+          skipBtn.textContent = p.soloSkipUsed ? "❌ SIN SKIPS" : "⏭️ SKIPEAR (Último skip)";
+       } else {
+          skipBtn.textContent = `⏭️ SKIPEAR (${a.skips.length}/${activeCount})`;
+       }
+     }
+   }
+  }
+  
+  $("players").innerHTML=s.players.map(p=>`
+   <div class="player-card">
+    <div class="row"><b>${p.name}</b><span style="color:var(--g);font-weight:bold">€${p.budget}M</span></div>
+    <div class="squad-list">
+     ${p.squad.map((sq,i)=>{
+      const pName=["POR","LD","DFC","DFC","LI","MC","MC","MC","ED","DC","EI"][i];
+      if(!sq) return `<div class="sq-item" style="color:#64748b">${pName}: Vacío</div>`;
+      return `<div class="sq-item"><b style="color:var(--a)">${pName}:</b>${sq.name} <span style="color:var(--g)">(${sq.ovr})</span></div>`;
+     }).join("")}
+    </div>
+   </div>
+  `).join("");
+ });
+</script>
+</body>
+</html>
