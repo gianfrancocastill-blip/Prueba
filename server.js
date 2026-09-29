@@ -15,21 +15,57 @@ const positions=[
  ["Lateral izquierda","LI"],["Mediocampista","MC"],["Mediocampista","MC"],["Mediocampista","MC"],
  ["Extrema derecha","ED"],["Delantera","DC"],["Extrema izquierda","EI"]
 ];
-const nations=["🇺🇸 Estados Unidos","🇧🇷 Brasil","🇨🇦 Canadá","🇬🇧 Reino Unido","🇦🇺 Australia","🇩🇪 Alemania","🇫🇷 Francia","🇪🇸 España","🇮🇹 Italia","🇨🇿 República Checa","🇷🇺 Rusia","🇯🇵 Japón","🇲🇽 México","🇦🇷 Argentina","🇨🇴 Colombia"];
-const names=["Abella Danger","Adriana Chechik","Angela White","Anna Bell Peaks","Anya Olsen","Ariella Ferrera","Ariana Marie","Asa Akira","Autumn Falls","Ava Addams","Brittany Andrews","Brandi Love","Brooklyn Chase","Carmen Caliente","Carter Cruise","Casey Calvert","Charlotte Sartre","Cherie DeVille","Christy Canyon","Clara Mia","Dani Daniels","Dani Jensen","Dillion Harper","Elsa Jean","Emily Willis","Eva Elfie","Eva Lovia","Gianna Dior","Gina Valentina","Hannah Hays","Harley Dean","Isabella Soprano","Jasmine Grey","Jayden Cole","Jessa Rhodes","Jill Kassidy","Jillian Janson","Kendra Lust","Kira Noir","Kissa Sins","Kylie Page","Lana Rhoades","Lauren Phillips","Lexi Belle","Lisa Ann","Little Caprice","Luna Star","Madison Ivy","Mandy Muse","Maria Nagai","Mia Malkova","Mia Melano","Molly Little","Monique Alexander","Nicole Aniston","Nina North","Nikki Benz","Nina Hartley","Peta Jensen","Phoenix Marie","Piper Perri","Riley Reid","Romi Rain","Sasha Grey","Sara Jay","Serena Blair","Sinn Sage","Sky Bri","Sophie Dee","Stormy Daniels","Tasha Reign","Teanna Trump","Tori Black","Violet Myers","Whitney Westgate","Zoe Parker","Aidra Fox","Alina Lopez","Alexis Texas","Amarna Miller","Alyssa Reece","Angel Youngs","Aubrey Gold","Bailey Brooke","Bella Rolland","Blair Williams","Briana Banks","Chanel Preston","Chloe Cherry","Coco Austin","Courtney Taylor","Dakota Skye","Demi Sutra","Diana Prince","Dolly Leigh","Eden Ivy","Ella Knox","Ember Snow","Erika Bell","India Summer","Jade Kush","Jana Cova","Janet Mason","Jasmine James","Jessica Drake","Jessie Andrews","Jordan Capri","Julia Ann","Kagney Linn Karter","Karlee Grey","Kenzie Reeves","Kristen Scott","Leah Gotti","Lily Carter","London Keyes","Megan Rain","Mia Li","Mila Azul","Misha Cross","Molly Cavalli","Natalia Starr","Olivia Lua","Penny Pax","Rachel Starr","Reagan Foxx","Remy LaCroix","Riley Nixon","Riley Steele","Samantha Saint","Savannah Sixx","Scarlet Red","Sierra Skye","Sunny Leone","Valentina Nappi","Veronica Avluv","Victoria Cakes","Victoria June","Vicky Vette","Yasmin Lee","Abigail Mac","Aaliyah Love","Alyx Star","Briana Banks","Cali Carter","Camille Crimson","Chloe Amour","Daisy Ducati","Daphne Dare","Delilah Day","Destiny Cruz","Diana Doll","Ella Reese","Gia Derza","Gigi Allens","Giselle Leon","Holly Hendrix","Isla Ivy","Ivana Sugar","Jada Stevens","Jasmine Jae","Jazmin Luv","Jennifer White","Kali Roses","Kara Lee","Karmen Karma","Kasey Warner","Kathy Rose","Keisha Grey","Kira Perez","Kylie Rocket","Layla London","Lia Lin","Lily Rader","Lola Fae","Madi Meadows","Mandy Flores","Marley Brinx","Maya Bijou","Mia Rider","Mimi Miyagi","Miss Raquel","Nikki Dream","Nina Elle","Olivia Jayy","Penny Barber","Raven Bay","Raven Rockette","Roxie Sinner","Sasha Heart","Savannah Sixx","Sienna West","Skye Blue","Sydnee Steele","Tiffany Tatum","Tina Kay","Valentina Jewels","Veronica Vain","Vicky Chase","Violet Starr","Wendy Moon","Zelda Morrison"];
+
+// Base de datos extraída de tus PDFs (Nombre, Altura, País, Categoría, Posición general)
+const rawPlayers = [
+ // PORTERAS (POR)
+ ["Ava Koxxx", 191, "Reino Unido", "Normal", "POR"],["Rocky Emerson", 190, "EE.UU.", "Promesa", "POR"],["Elena Koshka", 183, "Rusia / EE.UU.", "Promesa", "POR"],["Alison Tyler", 183, "EE.UU.", "Normal", "POR"],["Nicolette Shea", 180, "EE.UU.", "Normal", "POR"],["Paige Turnah", 180, "Reino Unido", "Normal", "POR"],["Skylar Vox", 178, "EE.UU.", "Normal", "POR"],["Elly Clutch", 178, "EE.UU.", "Promesa", "POR"],["Chloe Foxxe", 178, "EE.UU.", "Promesa", "POR"],["Alura Jenson", 175, "EE.UU.", "Meme", "POR"],["Julia Ann", 175, "EE.UU.", "Leyenda", "POR"],["Tera Patrick", 175, "EE.UU.", "Leyenda", "POR"],["Briana Banks", 175, "EE.UU.", "Leyenda", "POR"],["Tori Black", 175, "EE.UU.", "Leyenda", "POR"],["Eliza Ibarra", 175, "EE.UU.", "Normal", "POR"],["Alexis Texas", 173, "EE.UU.", "Normal", "POR"],["Bridgette B", 173, "España", "Normal", "POR"],["Brandi Love", 170, "EE.UU.", "Leyenda", "POR"],["Savannah Bond", 170, "Australia", "Normal", "POR"],["Vero Buffone", 170, "Argentina", "Normal", "POR"],["Siri", 175, "EE.UU.", "Meme", "POR"],
+ // DEFENSORAS (DEF)
+ ["Angela White", 160, "Australia", "Leyenda", "DEF"],["Sofia Rose", 170, "EE.UU.", "Meme", "DEF"],["Sara Jay", 160, "EE.UU.", "Meme", "DEF"],["Lena Paul", 163, "EE.UU.", "Normal", "DEF"],["Kendra Lust", 163, "EE.UU.", "Normal", "DEF"],["Cherie DeVille", 163, "EE.UU.", "Normal", "DEF"],["Ryan Conner", 163, "EE.UU.", "Meme", "DEF"],["Dee Williams", 163, "EE.UU.", "Meme", "DEF"],["Gabbie Carter", 165, "EE.UU.", "Normal", "DEF"],["Lexi Luna", 165, "EE.UU.", "Normal", "DEF"],["Alexis Fawx", 165, "EE.UU.", "Normal", "DEF"],["Cory Chase", 163, "EE.UU.", "Normal", "DEF"],["Natasha Nice", 163, "Francia / EE.UU.", "Normal", "DEF"],["Valentina Nappi", 165, "Italia", "Normal", "DEF"],["Jessa Rhodes", 165, "EE.UU.", "Normal", "DEF"],["Blake Blossom", 163, "EE.UU.", "Normal", "DEF"],["Gianna Dior", 163, "EE.UU.", "Normal", "DEF"],["Violet Myers", 160, "EE.UU.", "Normal", "DEF"],["Emily Willis", 165, "Argentina / EE.UU.", "Normal", "DEF"],["Eva Elfie", 163, "Rusia", "Normal", "DEF"],["Mia Malkova", 170, "EE.UU.", "Normal", "DEF"],["Abella Danger", 163, "EE.UU.", "Normal", "DEF"],["Nicole Aniston", 165, "EE.UU.", "Normal", "DEF"],["Dani Daniels", 170, "EE.UU.", "Normal", "DEF"],["Ariella Ferrera", 165, "Colombia", "Normal", "DEF"],["Luna Star", 163, "Cuba / EE.UU.", "Normal", "DEF"],["Esperanza Gómez", 170, "Colombia", "Normal", "DEF"],["Franceska Jaimes", 170, "Colombia", "Normal", "DEF"],["Susy Gala", 163, "España", "Normal", "DEF"],["Erica Fontes", 165, "Portugal", "Normal", "DEF"],["Tiffany Tatum", 163, "Hungría", "Normal", "DEF"],["Amirah Adara", 163, "Hungría", "Normal", "DEF"],["Anna de Ville", 165, "Hungría", "Normal", "DEF"],["Agatha Vega", 165, "Venezuela", "Promesa", "DEF"],["Eve Sweet", 163, "Europa", "Promesa", "DEF"],["Sara Diamante", 165, "Italia", "Promesa", "DEF"],["Catherine Knight", 163, "Chile", "Promesa", "DEF"],["Syren De Mer", 163, "EE.UU.", "Meme", "DEF"],["Andi James", 165, "EE.UU.", "Meme", "DEF"],["Vicky Vette", 168, "Noruega / EE.UU.", "Meme", "DEF"],["Darla Crane", 165, "EE.UU.", "Meme", "DEF"],["Deauxma", 165, "EE.UU.", "Meme", "DEF"],["Persia Monir", 165, "EE.UU.", "Meme", "DEF"],["Nina Hartley", 163, "EE.UU.", "Leyenda", "DEF"],["Alina Lopez", 168, "EE.UU.", "Normal", "DEF"],["Victoria June", 163, "EE.UU.", "Normal", "DEF"],["Ella Knox", 165, "EE.UU.", "Normal", "DEF"],["Mariana Martix", 165, "Colombia", "Promesa", "DEF"],["Leah Gotti", 163, "EE.UU.", "Normal", "DEF"],
+ // MEDIOCAMPISTAS (MC)
+ ["Riley Reid", 163, "EE.UU.", "Leyenda", "MC"],["Lana Rhoades", 160, "EE.UU.", "Leyenda", "MC"],["Sasha Grey", 168, "EE.UU.", "Leyenda", "MC"],["Jenna Jameson", 170, "EE.UU.", "Leyenda", "MC"],["Asa Akira", 157, "EE.UU.", "Leyenda", "MC"],["Stoya", 168, "EE.UU.", "Leyenda", "MC"],["Belladonna", 163, "EE.UU.", "Leyenda", "MC"],["Katsuni", 163, "Francia", "Leyenda", "MC"],["Silvia Saint", 165, "Rep. Checa", "Leyenda", "MC"],["Jesse Jane", 160, "EE.UU.", "Leyenda", "MC"],["Janine Lindemulder", 170, "EE.UU.", "Leyenda", "MC"],["Stormy Daniels", 163, "EE.UU.", "Leyenda", "MC"],["Bree Olson", 163, "EE.UU.", "Leyenda", "MC"],["Teagan Presley", 157, "EE.UU.", "Leyenda", "MC"],["Savanna Samson", 165, "EE.UU.", "Leyenda", "MC"],["Kylie Ireland", 163, "EE.UU.", "Leyenda", "MC"],["Jewel De'Nyle", 165, "EE.UU.", "Leyenda", "MC"],["Asia Carrera", 163, "EE.UU.", "Leyenda", "MC"],["Devon", 170, "EE.UU.", "Leyenda", "MC"],["Nikki Benz", 163, "Canadá / EE.UU.", "Leyenda", "MC"],["Gal Ritchie", 165, "Reino Unido", "Promesa", "MC"],["Chanel Camryn", 160, "EE.UU.", "Promesa", "MC"],["Cheerleader Kait", 165, "EE.UU.", "Promesa", "MC"],["Aubree Valentine", 163, "EE.UU.", "Promesa", "MC"],["Amber Moore", 160, "EE.UU.", "Promesa", "MC"],["Madison Wilde", 163, "EE.UU.", "Promesa", "MC"],["Brianna Arson", 165, "EE.UU.", "Promesa", "MC"],["Kelsey Kane", 163, "EE.UU.", "Promesa", "MC"],["Hayley Davies", 165, "Australia", "Promesa", "MC"],["Jasmine Sherni", 163, "EE.UU.", "Promesa", "MC"],["Violet Voss", 160, "EE.UU.", "Promesa", "MC"],["Sky Wonderland", 163, "EE.UU.", "Promesa", "MC"],["Ashby Winter", 165, "Rusia", "Promesa", "MC"],["Beca Barbie", 165, "EE.UU.", "Promesa", "MC"],["Alexa Chains", 163, "EE.UU.", "Promesa", "MC"],["Rissa May", 160, "EE.UU.", "Promesa", "MC"],["Willow Ryder", 163, "EE.UU.", "Promesa", "MC"],["Leilani Li", 160, "EE.UU.", "Promesa", "MC"],["Lily Starfire", 160, "EE.UU.", "Promesa", "MC"],["Eva Generosi", 165, "Italia", "Promesa", "MC"],["Comatozze", 162, "Rusia", "Promesa", "MC"],["Sweetie Fox", 165, "Rusia", "Promesa", "MC"],["Veronica Leal", 162, "Colombia", "Promesa", "MC"],["Canela Skin", 160, "Colombia", "Promesa", "MC"],["Giselle Montes", 160, "México", "Normal", "MC"],["Little Caprice", 160, "Rep. Checa", "Normal", "MC"],["Hitomi Tanaka", 155, "Japón", "Normal", "MC"],
+ // EXTREMAS (EXT)
+ ["Piper Perri", 150, "EE.UU.", "Normal", "EXT"],["Elsa Jean", 152, "EE.UU.", "Normal", "EXT"],["Kimmy Granger", 157, "EE.UU.", "Normal", "EXT"],["Eva Lovia", 157, "EE.UU.", "Normal", "EXT"],["Adriana Chechik", 157, "EE.UU.", "Normal", "EXT"],["Jynx Maze", 155, "EE.UU.", "Normal", "EXT"],["LaSirena69", 152, "Venezuela", "Normal", "EXT"],["Cubbi Thompson", 150, "EE.UU.", "Promesa", "EXT"],["Sheridan Love", 150, "EE.UU.", "Meme", "EXT"],["April Flores", 157, "EE.UU.", "Meme", "EXT"],["Bunny De La Cruz", 157, "EE.UU.", "Meme", "EXT"],["Karla Lane", 157, "EE.UU.", "Meme", "EXT"],["Lulu Chu", 150, "EE.UU.", "Normal", "EXT"],["Kenzie Reeves", 152, "EE.UU.", "Normal", "EXT"],["Rae Lil Black", 157, "EE.UU.", "Normal", "EXT"],["Autumn Falls", 157, "EE.UU.", "Normal", "EXT"],["Melody Marks", 157, "EE.UU.", "Normal", "EXT"],["Gina Valentina", 155, "Brasil", "Normal", "EXT"],["Chloe Cherry", 160, "EE.UU.", "Normal", "EXT"],["Emma Fiore", 157, "Argentina", "Promesa", "EXT"],["Marina Gold", 157, "Perú", "Promesa", "EXT"],["Xxlayna Marie", 152, "EE.UU.", "Promesa", "EXT"],["Sophia Leone", 157, "EE.UU.", "Normal", "EXT"],
+ // DELANTERAS (DC)
+ ["Mia Khalifa", 157, "Líbano / EE.UU.", "Leyenda", "DC"],["Lisa Ann", 157, "EE.UU.", "Leyenda", "DC"],["Jenna Haze", 157, "EE.UU.", "Leyenda", "DC"],["Ginger Lynn", 157, "EE.UU.", "Leyenda", "DC"],["Christy Canyon", 163, "EE.UU.", "Leyenda", "DC"],["Ava Addams", 160, "EE.UU.", "Leyenda", "DC"],["Julie Cash", 168, "EE.UU.", "Meme", "DC"],["Lila Lovely", 170, "EE.UU.", "Meme", "DC"],["Mazzaratie Monica", 165, "EE.UU.", "Meme", "DC"],["Lexxxi Luxe", 168, "EE.UU.", "Meme", "DC"],["Samantha 38G", 163, "EE.UU.", "Meme", "DC"],["Kimmie Kaboom", 165, "EE.UU.", "Meme", "DC"],["Eliza Allure", 165, "EE.UU.", "Meme", "DC"],["Victoria Cakes", 170, "EE.UU.", "Meme", "DC"],["Marilyn Mayson", 165, "EE.UU.", "Meme", "DC"],["Angelina Castro", 168, "Cuba / EE.UU.", "Meme", "DC"],["Rita Daniels", 165, "EE.UU.", "Meme", "DC"],["Sally D'Angelo", 155, "EE.UU.", "Meme", "DC"],["Bea Cummins", 160, "EE.UU.", "Meme", "DC"],["Candy Samples", 163, "EE.UU.", "Meme", "DC"],["Erica Lauren", 165, "EE.UU.", "Meme", "DC"],["Klaudia Kelly", 163, "EE.UU.", "Meme", "DC"],["Alexxxis Allure", 161, "EE.UU.", "Meme", "DC"],["Lela Star", 157, "EE.UU.", "Normal", "DC"]
+];
+
+const playersDB = rawPlayers.map(p => ({ name: p[0], height: p[1], nation: p[2], category: p[3], pos: p[4] }));
 
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}
 
-function makePerson(){
- const category=["Leyenda","Promesa","Regular","Broma/Meme"][rand(0,3)];
- let min=60,max=84;
- if(category==="Leyenda"){min=85;max=99}
- if(category==="Promesa"){min=75;max=90}
- if(category==="Broma/Meme"){min=40;max=70}
- const ovr=rand(min,max);
- const v=x=>Math.max(1,Math.min(99,rand(ovr-8,ovr+7)));
- return {name:names[rand(0,names.length-1)],category,ovr,height:rand(160,188),nation:nations[rand(0,nations.length-1)],
- stats:{Velocidad:v(),Tecnica:v(),Fisico:v(),Defensa:v(),Pase:v(),Finalizacion:v()}};
+// Mapea la posición específica del juego a la categoría general de los PDFs
+function getGeneralPos(posCode) {
+ if (posCode === "POR") return "POR";
+ if (["LD", "DFC", "LI"].includes(posCode)) return "DEF";
+ if (posCode === "MC") return "MC";
+ if (["ED", "EI"].includes(posCode)) return "EXT";
+ if (posCode === "DC") return "DC";
+}
+
+// OVR basado estrictamente en el estilo FIFA según su categoría
+function getOVR(cat) {
+ if(cat === "Leyenda") return rand(85, 99);
+ if(cat === "Promesa") return rand(75, 89);
+ if(cat === "Normal") return rand(70, 84);
+ return rand(40, 69); // Memes
+}
+
+function makePerson(posIndex){
+ const posCode = positions[posIndex][1];
+ const genPos = getGeneralPos(posCode);
+ 
+ // Filtramos solo las jugadoras que coinciden con la posición actual
+ const available = playersDB.filter(p => p.pos === genPos);
+ const base = available[rand(0, available.length - 1)];
+
+ const ovr = getOVR(base.category);
+ const v = x => Math.max(1, Math.min(99, rand(ovr - 8, ovr + 7)));
+ 
+ return {
+   name: base.name, category: base.category, ovr: ovr, height: base.height, nation: base.nation,
+   stats:{Velocidad:v(),Tecnica:v(),Fisico:v(),Defensa:v(),Pase:v(),Finalizacion:v()}
+ };
 }
 
 function newAuction(room){
@@ -37,13 +73,9 @@ function newAuction(room){
  const max=Math.max(1,...active.map(p=>p.budget));
  
  room.auction={
-   person:makePerson(),
+   person:makePerson(room.pos),
    start:rand(1,Math.min(100,max)),
-   bid:0,
-   leader:null,
-   closed:false, 
-   timeLeft: 20,
-   skips: [] 
+   bid:0, leader:null, closed:false, timeLeft: 20, skips: [] 
  };
  room.auction.bid=room.auction.start;
 
@@ -75,18 +107,15 @@ function executeAward(room) {
    if (active.length === 1) {
      const lastPlayer = active[0];
      if (!lastPlayer.soloSkipUsed) {
-       // El último jugador deja acabar el tiempo, se consume su skip gratis
        lastPlayer.soloSkipUsed = true;
        io.to(room.code).emit("reveal", { winner: null, person: a.person, msg: `Skipeada (Último skip)` });
        setTimeout(()=>{newAuction(room);broadcast(room)}, 2500);
        return;
      } else {
-       // Ya usó su skip y dejó acabar el tiempo: COMPRA FORZADA al precio base
        a.leader = lastPlayer.id;
        a.bid = Math.min(a.start, lastPlayer.budget);
      }
    } else {
-     // Si hay varios activos y nadie pujó al terminar el tiempo
      io.to(room.code).emit("reveal", { winner: null, person: a.person, msg: "Tiempo agotado. ¡Skipeada!" });
      setTimeout(()=>{newAuction(room);broadcast(room)}, 2500);
      return;
@@ -102,7 +131,6 @@ function executeAward(room) {
 
  if(room.players.every(p=>p.squad[room.pos])){
    room.pos++;
-   // Reiniciamos el Skip personal de cada jugador para la siguiente posición
    room.players.forEach(p => p.soloSkipUsed = false);
 
    if(room.pos>=positions.length){room.finished=true;room.auction=null;broadcast(room);return;}
@@ -174,20 +202,18 @@ io.on("connection",socket=>{
    
    const active = room.players.filter(x => !x.squad[room.pos]);
    
-   // Si es el único jugador restante que necesita la posición, verificamos su cupo de skip
    if(active.length === 1) {
      if(p.soloSkipUsed) return cb?.({ok:false, msg:"Ya usaste tu skip único en esta posición."});
      p.soloSkipUsed = true;
    }
    
-   // Si todos los que necesitan la posición pulsaron skip
    if(a.skips.length >= active.length) {
      if(room.timer) clearInterval(room.timer);
      a.closed = true;
      io.to(room.code).emit("reveal", { winner: null, person: a.person, msg: "¡Skipeada por votación!" });
      setTimeout(()=>{newAuction(room);broadcast(room)}, 2500);
    } else {
-     broadcast(room); // Refresca los botones con el conteo (ej. 1/3)
+     broadcast(room);
    }
    cb?.({ok:true});
  });
