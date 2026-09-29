@@ -107,7 +107,7 @@ io.on("connection",socket=>{
    const room=rooms.get(socket.room);if(!room)return;
    if(socket.id!==room.host)return cb?.({ok:false,msg:"Solo el anfitrión puede iniciar."});
    // Permitimos iniciar si está lleno o si tiene al menos 3 jugadores según las reglas del juego
-   if(room.players.length < 3 || room.players.length > room.maxPlayers)return cb?.({ok:false,msg:`Se necesitan entre 3 y ${room.maxPlayers} jugadores.`});
+   if(room.players.length < 2 || room.players.length > room.maxPlayers)return cb?.({ok:false,msg:`Se necesitan entre 3 y ${room.maxPlayers} jugadores.`});
    room.started=true;room.pos=0;newAuction(room);broadcast(room);cb?.({ok:true});
  });
  
