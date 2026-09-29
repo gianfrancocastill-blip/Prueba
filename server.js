@@ -45,9 +45,9 @@ function getGeneralPos(posCode) {
 
 // OVR basado estrictamente en el estilo FIFA según su categoría
 function getOVR(cat) {
- if(cat === "Leyenda") return rand(85, 99);
- if(cat === "Promesa") return rand(75, 89);
- if(cat === "Normal") return rand(70, 84);
+ if(cat === "Leyenda") return rand(90, 99);
+ if(cat === "Promesa") return rand(80, 89);
+ if(cat === "Normal") return rand(70, 90);
  return rand(40, 69); // Memes
 }
 
