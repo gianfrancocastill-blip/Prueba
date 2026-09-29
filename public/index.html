@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Subasta Pornera</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#080b12;color:#f4f7fb;font-family:Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:22px}.panel{background:#121925;border:1px solid #2b3648;border-radius:16px;padding:18px;margin-bottom:16px}.logo{font-size:30px;font-weight:900;margin-bottom:18px}.logo span{color:#65e6a1}.setup{max-width:600px;margin:70px auto}input,select{width:100%;padding:12px;background:#0b111a;border:1px solid #334158;color:white;border-radius:9px;margin:5px 0}.btn{padding:12px 16px;border:0;border-radius:9px;font-weight:800;cursor:pointer}.green{background:#65e6a1;color:#07120c}.blue{background:#263750;color:#fff}.gold{background:#ffd166;color:#211905}.hidden{display:none!important}.grid{display:grid;grid-template-columns:1.5fr .8fr;gap:16px}.auction{display:grid;grid-template-columns:1fr 1fr;gap:12px}.anon{min-height:300px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#0c121b;border-radius:14px}.sil{width:100px;height:130px;position:relative}.sil:before{content:"";position:absolute;top:0;left:25px;width:50px;height:50px;border-radius:50%;background:#68758a}.sil:after{content:"";position:absolute;bottom:0;width:100px;height:80px;border-radius:50px 50px 12px 12px;background:#68758a}.price{font-size:42px;color:#ffd166;font-weight:900}.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}.chip{background:#202b3c;border:1px solid #35445c;border-radius:999px;padding:7px 9px;font-size:13px}.bids{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bid{padding:17px;background:#1c2a3d;color:white;border:1px solid #34455e;border-radius:10px;font-weight:900}.bid:disabled{opacity:.25}.players{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pc{background:#0c121b;padding:10px;border-radius:10px;border:1px solid #29364a}.money{color:#65e6a1;font-weight:900}.squad{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.slot{background:#0b1119;border:1px solid #2a3446;border-radius:8px;padding:8px;min-height:60px}.slot b{display:block;font-size:11px;color:#9da8ba}.ovr{color:#ffd166;font-weight:900}.reveal{margin-top:12px;background:#192333;border:1px solid #485b76;padding:16px;border-radius:12px}.reveal .ov{font-size:48px;color:#ffd166;font-weight:900}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}@media(max-width:800px){.grid,.auction{grid-template-columns:1fr}.squad{grid-template-columns:1fr 1fr}}
+*{box-sizing:border-box}body{margin:0;background:#080b12;color:#f4f7fb;font-family:Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:22px}.panel{background:#121925;border:1px solid #2b3648;border-radius:16px;padding:18px;margin-bottom:16px}.logo{font-size:30px;font-weight:900;margin-bottom:18px}.logo span{color:#65e6a1}.setup{max-width:600px;margin:70px auto}input,select{width:100%;padding:12px;background:#0b111a;border:1px solid #334158;color:white;border-radius:9px;margin:5px 0}.btn{padding:12px 16px;border:0;border-radius:9px;font-weight:800;cursor:pointer}.green{background:#65e6a1;color:#07120c}.blue{background:#263750;color:#fff}.gold{background:#ffd166;color:#211905}.hidden{display:none!important}.grid{display:grid;grid-template-columns:1.5fr .8fr;gap:16px}.auction{display:grid;grid-template-columns:1fr 1fr;gap:12px}.anon{min-height:300px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#0c121b;border-radius:14px}.sil{width:100px;height:130px;position:relative}.sil:before{content:"";position:absolute;top:0;left:25px;width:50px;height:50px;border-radius:50%;background:#68758a}.sil:after{content:"";position:absolute;bottom:0;width:100px;height:80px;border-radius:50px 50px 12px 12px;background:#68758a}.price{font-size:42px;color:#ffd166;font-weight:900}.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}.chip{background:#202b3c;border:1px solid #35445c;border-radius:999px;padding:7px 9px;font-size:13px}.bids{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bid{padding:17px;background:#1c2a3d;color:white;border:1px solid #34455e;border-radius:10px;font-weight:900}.bid:disabled{opacity:.25}.players{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pc{background:#0c121b;padding:10px;border-radius:10px;border:1px solid #29364a}.money{color:#65e6a1;font-weight:900}.squad{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.slot{background:#0b1119;border:1px solid #2a3446;border-radius:8px;padding:8px;min-height:60px}.slot b{display:block;font-size:11px;color:#9da8ba}.ovr{color:#ffd166;font-weight:900}.reveal{margin-top:12px;background:#192333;border:1px solid #485b76;padding:16px;border-radius:12px}.reveal .ov{font-size:48px;color:#ffd166;font-weight:900}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.t-card{background:#1c2a3d; padding:15px; border-radius:10px; border:2px solid #34455e; text-align:center; width: 45%;}
+.t-card.win{border-color:#65e6a1; background:#0e2b1b;}
+.t-card.lose{opacity: 0.5;}
+@media(max-width:800px){.grid,.auction{grid-template-columns:1fr}.squad{grid-template-columns:1fr 1fr}}
 </style></head>
 <body><div class="wrap">
 <div class="logo">SUBASTA <span>PORNERA</span></div>
@@ -14,22 +18,30 @@
 <div class="panel row"><b>Sala: <span id="room"></span></b><span id="count"></span><button id="start" class="btn green hidden" onclick="start()">INICIAR SUBASTA</button></div>
 <div id="wait" class="panel"><h2>Esperando jugadores</h2><div id="waiting"></div></div>
 <div id="game" class="grid hidden">
-<main class="panel"><div class="auction"><div class="anon"><div class="sil"></div><h2 id="pos"></h2><div class="chips"><span class="chip" id="height"></span><span class="chip" id="nation"></span><span class="chip" id="initial"></span></div><p>Nombre, categoría y OVR ocultos.</p></div>
+<main class="panel" id="auctionView"><div class="auction"><div class="anon"><div class="sil"></div><h2 id="pos"></h2><div class="chips"><span class="chip" id="height"></span><span class="chip" id="nation"></span><span class="chip" id="initial"></span></div><p>Nombre, categoría y OVR ocultos.</p></div>
 <div>
   <div style="display:flex; justify-content:space-between; align-items:center;">
-    <div>
-      <p style="margin: 0 0 5px 0; font-size: 14px;">PUJA ACTUAL</p>
-      <div class="price" id="bid"></div>
-    </div>
-    <div style="text-align: right;">
-      <p style="margin: 0 0 5px 0; font-size: 14px;">TIEMPO</p>
-      <div class="price" id="timer" style="color: #65e6a1;">20s</div>
-    </div>
+    <div><p style="margin: 0 0 5px 0; font-size: 14px;">PUJA ACTUAL</p><div class="price" id="bid"></div></div>
+    <div style="text-align: right;"><p style="margin: 0 0 5px 0; font-size: 14px;">TIEMPO</p><div class="price" id="timer" style="color: #65e6a1;">20s</div></div>
   </div>
   <div class="panel" id="leader">Sin pujas</div>
   <div class="bids"><button class="bid" onclick="bid(5)">+€5M</button><button class="bid" onclick="bid(10)">+€10M</button><button class="bid" onclick="bid(50)">+€50M</button><button class="bid" onclick="bid(100)">+€100M</button></div>
   <button id="skip-btn" class="btn hidden" style="width:100%;margin-top:12px;background:#e66565;color:#fff" onclick="skip()">⏭️ SKIPEAR</button>
 </div></div><div id="reveal" class="reveal hidden"></div></main>
+
+<main class="panel hidden" id="tournamentView">
+  <h1 id="tourney-round" style="text-align:center; color:#ffd166; margin:0">TORNEO FINAL</h1>
+  <div style="display:flex; justify-content:space-around; align-items:center; margin-top:20px;">
+    <div style="text-align:center"><h2 id="t-p1-name">Jugador 1</h2><div class="price" id="t-p1-score">0</div></div>
+    <h2 style="color:#68758a">VS</h2>
+    <div style="text-align:center"><h2 id="t-p2-name">Jugador 2</h2><div class="price" id="t-p2-score">0</div></div>
+  </div>
+  <div id="t-arena" style="margin-top:20px; display:flex; justify-content:space-between; align-items:center; background:#0c121b; padding:20px; border-radius:12px; min-height:180px;">
+     <h3 style="color:#68758a; width:100%; text-align:center;">Preparando duelo...</h3>
+  </div>
+  <h2 id="t-winner" class="reveal hidden" style="text-align:center; color:#65e6a1; margin-top:20px;"></h2>
+</main>
+
 <aside class="panel"><h3>Jugadores</h3><div id="players" class="players"></div><h3 style="margin-top:16px">Tu plantilla</h3><div id="squad" class="squad"></div></aside>
 </div></section></div>
 <script src="/socket.io/socket.io.js"></script><script>
@@ -44,19 +56,35 @@ function start(){socket.emit("start",r=>{if(r&&!r.ok)alert(r.msg)})}
 function bid(n){socket.emit("bid",n,r=>{if(r&&!r.ok)alert(r.msg)})}
 function skip(){socket.emit("skip",r=>{if(r&&!r.ok)alert(r.msg)})}
 
-socket.on("tick", t => {
-  const tmr = $("timer");
-  if (tmr) tmr.textContent = t + "s";
+socket.on("tick", t => { const tmr = $("timer"); if (tmr) tmr.textContent = t + "s"; });
+
+socket.on("tourney_tick", data => {
+  $("t-p1-score").textContent = data.p1s;
+  $("t-p2-score").textContent = data.p2s;
+  $("t-arena").innerHTML = `
+    <div class="t-card ${data.w===1?'win':(data.w===2?'lose':'')}">
+      <small style="color:#68758a">${data.posName.toUpperCase()}</small><br>
+      <b>${data.c1.name}</b><div class="price" style="font-size:32px">${data.c1.ovr}</div>
+    </div>
+    <b style="color:#68758a">VS</b>
+    <div class="t-card ${data.w===2?'win':(data.w===1?'lose':'')}">
+      <small style="color:#68758a">${data.posName.toUpperCase()}</small><br>
+      <b>${data.c2.name}</b><div class="price" style="font-size:32px">${data.c2.ovr}</div>
+    </div>
+  `;
+});
+
+socket.on("tourney_match_end", data => {
+  $("t-winner").textContent = data.msg;
+  $("t-winner").classList.remove("hidden");
 });
 
 socket.on("state",s=>{state=s;me=me||s.players.find(p=>p.id===socket.id)?.id;render()});
 socket.on("reveal",r=>{
  $("reveal").classList.remove("hidden");
  if(r.winner === null) {
-   // Panel especial para Skipeada
    $("reveal").innerHTML=`<div class="row"><div><h2>⏭️ ${r.msg}</h2><b>${r.person.name}</b><p>${r.person.nation} · ${r.person.height} cm · ${r.person.category}</p></div><div class="ov" style="color:#68758a">${r.person.ovr}</div></div>`;
  } else {
-   // Panel normal de victoria
    $("reveal").innerHTML=`<div class="row"><div><h2>🔨 ${r.winner} — €${r.price}M</h2><b>${r.person.name}</b><p>${r.person.nation} · ${r.person.height} cm · ${r.person.category}</p></div><div class="ov">${r.person.ovr}</div></div>`;
  }
 });
@@ -66,39 +94,50 @@ function render(){
  $("waiting").classList.toggle("hidden",state.started);
  $("start").classList.toggle("hidden",!(state.players.find(p=>p.id===socket.id)?.id===state.host && state.players.length>=2 && !state.started));
  if(!state.started)return;
+ 
  $("game").classList.remove("hidden");$("wait").classList.add("hidden");
- if(state.finished){$("game").innerHTML='<div class="panel"><h1>🏆 TORNEO FINAL</h1><p>Todos completaron sus 11 posiciones. Aquí comienza la comparación por OVR.</p></div>';return}
  
- const a=state.auction;
- $("pos").textContent=posNames[state.pos].toUpperCase();$("height").textContent="Altura: "+a.person.height+" cm";$("nation").textContent=a.person.nation;$("initial").textContent="Inicial: €"+a.start+"M";$("bid").textContent="€"+a.bid+"M";
- $("timer").textContent = a.timeLeft + "s";
- 
- const lead=state.players.find(p=>p.id===a.leader);$("leader").textContent=lead?"🔥 "+lead.name+" va ganando":"Sin pujas";
- 
- document.querySelectorAll(".bid").forEach((b,i)=>{
-   const adds=[5,10,50,100],p=state.players.find(x=>x.id===socket.id);
-   b.disabled=a.closed||!p||p.squad[state.pos]||p.budget<a.bid+adds[i];
- });
-
- // Lógica visual del botón Skip
- const skipBtn = $("skip-btn");
- if(skipBtn) {
-   const p = state.players.find(x => x.id === socket.id);
-   const isActive = p && !p.squad[state.pos];
-   skipBtn.classList.toggle("hidden", !isActive || a.closed);
+ if(state.finished && state.tournament){
+   $("auctionView").classList.add("hidden");
+   $("tournamentView").classList.remove("hidden");
    
-   if(isActive) {
-     const activeCount = state.players.filter(x => !x.squad[state.pos]).length;
-     const hasSkipped = a.skips.includes(socket.id);
-     const isLeader = a.leader === socket.id;
-     
-     // Bloquea el botón si ya votó, si va ganando o si es el último y ya no tiene skips disponibles
-     skipBtn.disabled = a.closed || hasSkipped || isLeader || (activeCount === 1 && p.soloSkipUsed);
-     
-     if (activeCount === 1) {
-       skipBtn.textContent = p.soloSkipUsed ? "❌ SIN SKIPS" : "⏭️ SKIPEAR (Último skip)";
-     } else {
-       skipBtn.textContent = `⏭️ SKIPEAR (${a.skips.length}/${activeCount})`;
+   if(state.tournament.state === 'STARTING') {
+      $("tourney-round").textContent = "LLAVES GENERADAS";
+      $("t-arena").innerHTML = `<h3 style="color:#68758a; width:100%; text-align:center;">El torneo está a punto de comenzar...</h3>`;
+   } else if (state.tournament.state === 'MATCH') {
+      $("t-winner").classList.add("hidden");
+      $("tourney-round").textContent = state.tournament.currentMatch.roundName;
+      $("t-p1-name").textContent = state.tournament.currentMatch.p1Name;
+      $("t-p2-name").textContent = state.tournament.currentMatch.p2Name;
+   } else if (state.tournament.state === 'CHAMPION') {
+      $("tourney-round").textContent = "🏆 CAMPEÓN CORONADO 🏆";
+      $("t-arena").innerHTML = `<div style="text-align:center; width:100%"><h1 style="font-size:48px; color:#ffd166; margin:0">${state.tournament.champion}</h1><p>Se lleva la gloria de la subasta.</p></div>`;
+      $("t-p1-score").parentElement.classList.add("hidden");
+      $("t-p2-score").parentElement.classList.add("hidden");
+   }
+ } else if(!state.finished) {
+   const a=state.auction;
+   $("pos").textContent=posNames[state.pos].toUpperCase();$("height").textContent="Altura: "+a.person.height+" cm";$("nation").textContent=a.person.nation;$("initial").textContent="Inicial: €"+a.start+"M";$("bid").textContent="€"+a.bid+"M";
+   $("timer").textContent = a.timeLeft + "s";
+   const lead=state.players.find(p=>p.id===a.leader);$("leader").textContent=lead?"🔥 "+lead.name+" va ganando":"Sin pujas";
+   
+   document.querySelectorAll(".bid").forEach((b,i)=>{
+     const adds=[5,10,50,100],p=state.players.find(x=>x.id===socket.id);
+     b.disabled=a.closed||!p||p.squad[state.pos]||p.budget<a.bid+adds[i];
+   });
+
+   const skipBtn = $("skip-btn");
+   if(skipBtn) {
+     const p = state.players.find(x => x.id === socket.id);
+     const isActive = p && !p.squad[state.pos];
+     skipBtn.classList.toggle("hidden", !isActive || a.closed);
+     if(isActive) {
+       const activeCount = state.players.filter(x => !x.squad[state.pos]).length;
+       const hasSkipped = a.skips.includes(socket.id);
+       const isLeader = a.leader === socket.id;
+       skipBtn.disabled = a.closed || hasSkipped || isLeader || (activeCount === 1 && p.soloSkipUsed);
+       if (activeCount === 1) skipBtn.textContent = p.soloSkipUsed ? "❌ SIN SKIPS" : "⏭️ SKIPEAR (Último skip)";
+       else skipBtn.textContent = `⏭️ SKIPEAR (${a.skips.length}/${activeCount})`;
      }
    }
  }
