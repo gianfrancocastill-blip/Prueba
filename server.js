@@ -1,9 +1,18 @@
-const express = require('express');
-const cors = require('cors');
+const express=require("express");
+const http=require("http");
+const {Server}=require("socket.io");
+const crypto=require("crypto");
+const path=require("path"); // <- AGREGA ESTA LÍNEA
 
-const app = express();
-app.use(cors());
-app.use(express.json()); // Necesario para parsear el body en POST
+const app=express();
+const server=http.createServer(app);
+const io=new Server(server);
+app.use(express.static("public"));
+
+// 👇 AGREGA ESTE BLOQUE 👇
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index_2.html"));
+});
 
 // --- 1. BASE DE DATOS DE JUGADORAS (Con OVR Estático) ---
 const rawPlayers = [
